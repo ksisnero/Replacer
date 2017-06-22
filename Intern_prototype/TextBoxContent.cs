@@ -9,6 +9,7 @@ namespace Intern_prototype
 {
     public class TextBoxContent
     {
-        public virtual string contentOfTextbox { get; set; }
+        public virtual string Text { get; set; }
+        public virtual string GetUserInput { get; set; }
     }
 }

@@ -15,62 +15,92 @@ namespace Intern_prototype
 {
     public class MainViewModel
     {
-        public virtual ObservableCollection<TextBoxContent> TextList { get; set; }
+        public virtual TextBoxContent Content { get; set; }
+        public virtual string GetUserInput { get; set; }
+        private int? x;
+
         public MainViewModel()
         {
-            TextList = new ObservableCollection<TextBoxContent>();
+            Content = ViewModelSource.Create(() => new TextBoxContent());
         }
 
-        public virtual void Button1()
+        public void Counter1(int x)
         {
-            TextBoxContent content;
-            TextList.Clear();
-            string Display;
+            string Display = "";
 
-            for (int r = 0; r < 101; r++)
+            for (int r = 0; r < x + 1; r++)
             {
+                //if number divisable by 2, 7, or 2 AND 7 return output
                 if (r % 2 == 0 && r % 7 == 0)
-                    Display = "Diagnose Patient";
+                    Display += "\nDiagnose Patient";
+
                 else if (r % 2 == 0)
-                    Display = "Diagnose";
+                    Display += "\nDiagnose";
 
                 else if (r % 7 == 0)
-                    Display = "Patient";
+                    Display += "\nPatient";
+
                 else
-                    Display = r.ToString();
+                    Display += "\n" + r.ToString();
 
-                content = new TextBoxContent() { contentOfTextbox = Display };
-
-                TextList.Add(content);
-
+                Content.Text = Display;
             }
         }
+        public void Counter2(int x)
+        {
+            string Display2 = "";
 
-        //public virtual void Button2()
-        //{
-        //    TextBoxContent content2;
-        //    TextList.Clear();
+            for (int r = 0; r < x + 1; r++)
+            {
+                //if number divisable by 3, 5, or 3 AND 5 return output
+                if (r % 3 == 0 && r % 5 == 0)
+                    Display2 += "\nRegister Patient";
 
-        //    string Display2;
+                else if (r % 3 == 0)
+                    Display2 += "\nRegister";
 
-        //    for (int r = 0; r < 101; r++)
-        //    {
-        //        if (r % 3 == 0 && r % 5 == 0)
-        //            Display2 = "Register Patient";
+                else if (r % 5 == 0)
+                    Display2 += "\nPatient";
 
-        //        else if (r % 3 == 0)
-        //            Display2 = "Register";
+                else
+                    Display2 += "\n" + r.ToString();
 
-        //        else if (r % 5 == 0)
-        //            Display2 = "Patient";
-
-        //        else
-        //            Display2 = r.ToString();
-
-        //        content2 = new TextBoxContent() { contentOfTextbox = Display2 };
-        //        TextList.Add(content2);
-        //    }
-        //}
+                Content.Text = Display2;
+            }
+        }
+        public void Button1()
+        {
+            //get userinput and convert to int
+            int x = 100;
+            try
+            {
+                x = int.Parse(GetUserInput.ToString());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Input not valid!");
+                x = 0;
+            }
+            //if not negative or a decimal display answer
+            if (x > 0 && (x % 1 == 0))
+                Counter1(x);
+        }
+        public void Button2()
+        {
+            int x = 100;
+            try
+            {
+                x = int.Parse(GetUserInput.ToString());
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Input not valid!");
+                x = 0;
+            }
+            //if not negative or a decimal display answer
+            if (x > 0 && (x % 1 == 0))
+                Counter2(x);
+        }
     }
 }
    

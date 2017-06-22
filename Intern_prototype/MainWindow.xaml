@@ -10,14 +10,13 @@
         Title="MainWindow" Height="500" Width="500" DataContext="{dxmvvm:ViewModelSource Type={x:Type local:MainViewModel}}">
 
     <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="470" Height="451" Margin="10,10,0,0">
-        <dxlc:FlowLayoutControl HorizontalAlignment="Left" Height="370" Margin="8,71,0,0" VerticalAlignment="Top" Width="450" ItemsSource="{Binding TextList}">
-            <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="346" Margin="-11,-12,-1,0" TextWrapping="Wrap" Text="{Binding TextList}" VerticalAlignment="Top" Width="431" IsEnabled="true" BorderBrush="{x:Null}"/>
-        </dxlc:FlowLayoutControl>
-        <Button x:Name="button" Content="Click Me" HorizontalAlignment="Left" Margin="223,38,0,0" VerticalAlignment="Top" Width="107" Command="{Binding TextList}"/>
-        <Button Content="Now, Click me" HorizontalAlignment="Left" Margin="343,38,0,0" VerticalAlignment="Top" Width="107" Command="{Binding Button2Command}"/>
-
-        <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="11,38,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="192" Background="#FFEEECEC" Height="22" RenderTransformOrigin="-0.172,-1.133"/>
+        <Button x:Name="button" Content="Click Me" HorizontalAlignment="Left" Margin="227,38,0,0" VerticalAlignment="Top" Width="107" Command="{Binding Button1Command}"/>
+        <Button Content="Now, Click me" HorizontalAlignment="Left" Margin="347,38,0,0" VerticalAlignment="Top" Width="107" Command="{Binding Button2Command}"/>
         <Label x:Name="label" Content="How many would you like to Display? Please only whole numbers, and no negatives." HorizontalAlignment="Left" Margin="11,13,0,0" VerticalAlignment="Top" Width="447"/>
+        <ScrollViewer Height="374" Margin="15,62,16,0" VerticalAlignment="Top" dxlc:FlowLayoutControl.IsFlowBreak="True" VerticalScrollBarVisibility="Auto">
+            <TextBlock x:Name="Results" TextWrapping="Wrap" Text="{Binding Content.Text}" dxlc:FlowLayoutControl.IsFlowBreak="True" Height="auto" Width="427" RenderTransformOrigin="0.5,0.5"/>
+        </ScrollViewer>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="22" Margin="11,38,0,0" TextWrapping="Wrap" Text="{Binding GetUserInput, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True}" VerticalAlignment="Top" Width="202"/>
     </Grid>
 
 </Window>
