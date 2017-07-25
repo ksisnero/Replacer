@@ -5,18 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Intern_prototype"
     xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
-        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui" x:Class="Intern_prototype.MainWindow"
+        xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+    xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui" 
+    x:Class="Intern_prototype.MainWindow"
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="500" DataContext="{dxmvvm:ViewModelSource Type={x:Type local:MainViewModel}}">
 
     <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Width="470" Height="451" Margin="10,10,0,0">
-        <Button x:Name="button" Content="Click Me" HorizontalAlignment="Left" Margin="227,38,0,0" VerticalAlignment="Top" Width="107" Command="{Binding Button1Command}"/>
-        <Button Content="Now, Click me" HorizontalAlignment="Left" Margin="347,38,0,0" VerticalAlignment="Top" Width="107" Command="{Binding Button2Command}"/>
-        <Label x:Name="label" Content="How many would you like to Display? Please only whole numbers, and no negatives." HorizontalAlignment="Left" Margin="11,13,0,0" VerticalAlignment="Top" Width="447"/>
+        <Button x:Name="DiagnosePatient" Content="Diagnose Patient" HorizontalAlignment="Left" Margin="228,38,0,0" VerticalAlignment="Top" Width="118" Command="{Binding Button1Command}"/>
+        <Button x:Name="RegisterPatient" Content="Register Patient" HorizontalAlignment="Left" Margin="351,38,0,0" VerticalAlignment="Top" Width="107" Command="{Binding Button2Command}"/>
+        <Label x:Name="Instruction" Content="How many would you like to Display? Please only whole numbers, and no negatives." HorizontalAlignment="Left" Margin="11,13,0,0" VerticalAlignment="Top" Width="447"/>
         <ScrollViewer Height="374" Margin="15,62,16,0" VerticalAlignment="Top" dxlc:FlowLayoutControl.IsFlowBreak="True" VerticalScrollBarVisibility="Auto">
-            <TextBlock x:Name="Results" TextWrapping="Wrap" Text="{Binding Content.Text}" dxlc:FlowLayoutControl.IsFlowBreak="True" Height="auto" Width="427" RenderTransformOrigin="0.5,0.5"/>
+            <TextBlock x:Name="Results" TextWrapping="Wrap" Text="{Binding Content.Text}" dxlc:FlowLayoutControl.IsFlowBreak="True" Height="auto" Width="427"/>
         </ScrollViewer>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="22" Margin="11,38,0,0" TextWrapping="Wrap" Text="{Binding GetUserInput, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True}" VerticalAlignment="Top" Width="202"/>
+        <TextBox x:Name="UserInput" HorizontalAlignment="Left" Height="22" Margin="11,38,0,0" TextWrapping="Wrap" Text="{Binding GetUserInput, NotifyOnTargetUpdated=True, NotifyOnSourceUpdated=True}" VerticalAlignment="Top" Width="212"/>
     </Grid>
-
 </Window>

@@ -16,90 +16,53 @@ namespace Intern_prototype
     public class MainViewModel
     {
         public virtual TextBoxContent Content { get; set; }
-        public virtual string GetUserInput { get; set; }
-        private int? x;
+        public virtual string UserInput { get; set; }
+
+        private PatientEvent _diagnoseEvent;
+        private PatientEvent _registerEvent;
 
         public MainViewModel()
         {
             Content = ViewModelSource.Create(() => new TextBoxContent());
+            _registerEvent = new PatientEvent(3, 5, "Register", "Patient");
+            _diagnoseEvent = new PatientEvent(2, 7, "Diagnose", "Patient");
         }
 
-        public void Counter1(int x)
+        public void DiagnosePatient()
         {
-            string Display = "";
+            int highestNumberTranslated = GetUserInput();
 
-            for (int r = 0; r < x + 1; r++)
+            if (highestNumberTranslated > 0 && (highestNumberTranslated % 1 == 0))
             {
-                //if number divisable by 2, 7, or 2 AND 7 return output
-                if (r % 2 == 0 && r % 7 == 0)
-                    Display += "\nDiagnose Patient";
-
-                else if (r % 2 == 0)
-                    Display += "\nDiagnose";
-
-                else if (r % 7 == 0)
-                    Display += "\nPatient";
-
-                else
-                    Display += "\n" + r.ToString();
-
-                Content.Text = Display;
+                Content.Text = _diagnoseEvent.ReplaceValues(highestNumberTranslated);
             }
         }
-        public void Counter2(int x)
+
+        public void RegisterPatient()
         {
-            string Display2 = "";
+            int highestNumberTranslate = GetUserInput();
 
-            for (int r = 0; r < x + 1; r++)
+            if (highestNumberTranslate > 0 && (highestNumberTranslate % 1 == 0))
             {
-                //if number divisable by 3, 5, or 3 AND 5 return output
-                if (r % 3 == 0 && r % 5 == 0)
-                    Display2 += "\nRegister Patient";
-
-                else if (r % 3 == 0)
-                    Display2 += "\nRegister";
-
-                else if (r % 5 == 0)
-                    Display2 += "\nPatient";
-
-                else
-                    Display2 += "\n" + r.ToString();
-
-                Content.Text = Display2;
+                Content.Text = _registerEvent.ReplaceValues(highestNumberTranslate);
             }
         }
-        public void Button1()
+
+        public int GetUserInput()
         {
             //get userinput and convert to int
-            int x = 100;
+            int highestNumberTranslated;
+
             try
             {
-                x = int.Parse(GetUserInput.ToString());
+                highestNumberTranslated = int.Parse(UserInput);
             }
             catch (Exception)
             {
                 MessageBox.Show("Input not valid!");
-                x = 0;
+                highestNumberTranslated = 0;
             }
-            //if not negative or a decimal display answer
-            if (x > 0 && (x % 1 == 0))
-                Counter1(x);
-        }
-        public void Button2()
-        {
-            int x = 100;
-            try
-            {
-                x = int.Parse(GetUserInput.ToString());
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Input not valid!");
-                x = 0;
-            }
-            //if not negative or a decimal display answer
-            if (x > 0 && (x % 1 == 0))
-                Counter2(x);
+            return highestNumberTranslated;
         }
     }
 }
